@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Local 496: New Orleans Jazz History in Wikidata",
+    "kind": "Workshop slides",
+    "venue": "Tulane University, with the Hogan Jazz Archive",
+    "date": "November 8, 2019",
+    "format": "PDF, 23 slides",
+    "file": "Tulane Wikidata Workshop 2019 -  Slides.pdf",
+    "thumb": "thumbs/wikidata-workshop-2019.jpg"
+  },
+  {
+    "title": "Local 496 Project: From List to Graph",
+    "kind": "Poster",
+    "venue": "New York Archives Conference",
+    "date": "June 2018",
+    "format": "SVG, 16 MB",
+    "file": "Local 496 Project_ From List to Graph_Poster_Final Version.svg",
+    "thumb": "thumbs/from-list-to-graph-2018.jpg"
+  },
+  {
+    "title": "Semantic Lab at Pratt: Linked Jazz Local 496 Project and Batiste Project",
+    "kind": "Slides",
+    "venue": "Pratt Institute School of Information #InfoShow18",
+    "date": "May 2018",
+    "format": "PDF, 20 slides",
+    "file": "Genevieve Copy_Local 496 _ Batiste_Info Show PPT.pdf",
+    "thumb": "thumbs/info-show-2018.jpg"
+  }
+]

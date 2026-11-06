@@ -1,0 +1,10 @@
+{
+  "name": "linked-jazz-local-496",
+  "private": true,
+  "type": "module",
+  "description": "Static site for the Semantic Lab's Local 496 Project.",
+  "license": "MIT",
+  "scripts": {
+    "snapshot": "node scripts/snapshot.mjs"
+  }
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local 496 Project · Semantic Lab</title>
+  <meta name="description" content="The membership directory of American Federation of Musicians Local 496, the African-American musicians' union of New Orleans, as a map and a searchable directory.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/app.js"></script>
+</head>
+<body>
+  <main>
+
+    <header class="intro">
+      <figure class="photo">
+        <img src="assets/img/union-hall-1967.jpg" width="1051" height="998"
+             alt="Black-and-white snapshot stamped May 67: a two-storey clapboard building with an iron balcony and a hanging sign that reads Musician's Union Club. A man sits on the front step.">
+        <figcaption>Musician’s Union Office Club, Local 496. <a href="#credits">Photo credit</a></figcaption>
+      </figure>
+      <div class="intro-text">
+        <h1>Local 496 Project</h1>
+        <p>The Local 496 Membership Directory is the official roster of the Local 496 labor union. Created in the 1940s, it includes the names, addresses and instruments of the union members from the one-time segregated African-American chapter of the New Orleans jazz musicians’ union. While the chapter merged with the white musicians’ chapter in 1969, the Directory is a unique document that helps identify a cohesive and interrelated community of musicians. In collaboration with Tulane University’s Hogan Jazz Archive, the Semantic Lab transformed this static list into an expanded knowledge graph that will support and further jazz and other historical research in significant ways.</p>
+        <p class="support">Supported by New Orleans Jazz &amp; Heritage Foundation, Community Partnership Grant, Jazz &amp; Heritage Archive: Documentation and Preservation grant program (2019-2020).</p>
+        <ul class="links">
+          <li><a href="https://archives.tulane.edu/repositories/3/resources/1482">Union records at Tulane University</a></li>
+          <li><a href="https://base.semlab.io/wiki/Item:Q20719">The data in the Semantic Lab Wikibase</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section id="map" aria-labelledby="map-title">
+      <div class="section-head">
+        <h2 id="map-title">Map</h2>
+        <p id="map-status" class="note">Loading the map…</p>
+      </div>
+      <div id="map-frame" class="map-frame">
+        <canvas tabindex="0" role="img" aria-label="Map of New Orleans with a dot at each member's address from the directory. The same addresses are listed in the directory below."></canvas>
+        <div class="map-buttons">
+          <button type="button" data-map="in" aria-label="Zoom in">+</button>
+          <button type="button" data-map="out" aria-label="Zoom out">−</button>
+          <button type="button" data-map="reset" class="text" aria-label="Show all addresses">All</button>
+        </div>
+        <div id="map-card" class="map-card" hidden></div>
+        <p class="map-hint" hidden>Hold ⌘ or Ctrl and scroll to zoom</p>
+        <p class="map-credit">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</p>
+      </div>
+      <p class="note">Drag to move, pinch or use the buttons to zoom, and select a dot to see who lived there. <span id="map-filter-note" hidden>The map is showing only the members matched by the directory search below.</span></p>
+    </section>
+
+    <section id="directory" aria-labelledby="directory-title">
+      <div class="section-head">
+        <h2 id="directory-title">Directory</h2>
+        <p id="status" class="note" role="status">Loading the directory…</p>
+      </div>
+      <form class="controls" onsubmit="return false">
+        <label class="grow">Search
+          <input id="search" type="search" placeholder="Name, street or instrument" autocomplete="off">
+        </label>
+        <label>Instrument
+          <select id="instrument"><option value="">All instruments</option></select>
+        </label>
+        <label>Neighborhood
+          <select id="neighborhood"><option value="">All neighborhoods</option></select>
+        </label>
+        <label>Sort by
+          <select id="sort">
+            <option value="family">Last name, A to Z</option>
+            <option value="family-desc">Last name, Z to A</option>
+            <option value="instrument">Instrument</option>
+            <option value="neighborhood">Neighborhood</option>
+            <option value="page">Directory page</option>
+          </select>
+        </label>
+        <p id="count" class="count" aria-live="polite"></p>
+      </form>
+      <ul id="members" class="members"></ul>
+      <p id="empty" class="note" hidden>No members match that search.</p>
+      <nav id="pager" class="pager" aria-label="Directory pages"></nav>
+    </section>
+
+    <section id="presentations" aria-labelledby="presentations-title">
+      <div class="section-head">
+        <h2 id="presentations-title">Presentations</h2>
+      </div>
+      <ul id="presentation-list" class="presentations"></ul>
+    </section>
+
+  </main>
+
+  <footer id="credits">
+    <p><strong>Photograph.</strong> Russell, W. (n.d.). <cite>Musician’s Union Office Club (American Federation of Musicians, Local 496</cite>. Retrieved <a href="https://archives.tulane.edu/">https://archives.tulane.edu/</a> <a href="https://library.search.tulane.edu/permalink/01TUL_INST/4h6sc4/alma9945513844606326">https://library.search.tulane.edu/permalink/01TUL_INST/4h6sc4/alma9945513844606326</a></p>
+    <p><strong>Data.</strong> Every name, instrument and address on this page is read with a SPARQL query from the <a href="https://base.semlab.io/wiki/Item:Q20719">Semantic Lab Wikibase</a>, which records the <a href="https://base.semlab.io/wiki/Item:Q27054">Local 496 Membership Directory</a> held by Tulane University. Streets and water on the map are © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
+    <p><strong>Neighborhoods.</strong> Each address is placed in one of the City of New Orleans’s present-day <a href="https://data.nola.gov/dataset/Neighborhood-Statistical-Area/exvn-jeh2">Neighborhood Statistical Areas</a> by its coordinates. These are modern planning boundaries, not boundaries from the time of the directory.</p>
+    <p>A project of the <a href="https://semlab.io/">Semantic Lab</a>. <a href="https://github.com/SemanticLab/linked-jazz-local-496">Source code</a> under the MIT license.</p>
+  </footer>
+
+  <noscript><p class="noscript">This page needs JavaScript to load the directory and the map from the Semantic Lab Wikibase.</p></noscript>
+</body>
+</html>

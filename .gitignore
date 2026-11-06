@@ -1,0 +1,15 @@
+# Source data and working files. These stay on disk and out of the repository.
+/data_dumps/
+/quickstatements_*.tsv
+/IMG_4043.jpeg
+/*.jp2
+/Musician's Union Office Club*
+
+# Written at deploy time by scripts/snapshot.mjs
+/data/
+/_site/
+
+# Tooling
+.DS_Store
+node_modules/
+__pycache__/
