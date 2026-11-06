@@ -97,6 +97,12 @@ function streetViewLink(member, label) {
   return h("a", { class: "link", href, target: "_blank", rel: "noopener noreferrer" }, label);
 }
 
+/** The GeoNames record for a member's residence, when the Wikibase has its ID. */
+function geonamesLink(member, label) {
+  if (!member.geonames) return null;
+  return h("a", { class: "link", href: `https://www.geonames.org/${member.geonames}`, target: "_blank", rel: "noopener noreferrer" }, label);
+}
+
 function showOnMap(member) {
   if (!map || !map.focus(member.id)) return;
   $("#map").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -120,6 +126,7 @@ function memberCard(member) {
         { class: "member-links" },
         map && map.has(member.id) && h("button", { class: "link", type: "button", onclick: () => showOnMap(member) }, "Show on map"),
         streetViewLink(member, "Street View ↗"),
+        geonamesLink(member, "GeoNames ↗"),
       ),
     ),
   );
@@ -234,7 +241,13 @@ function showPlace(people) {
       "ul",
       {},
       people.map((person) =>
-        h("li", {}, h("a", { href: ITEM_URL + person.id }, person.name), h("span", {}, person.instruments.join(", "))),
+        h(
+          "li",
+          {},
+          h("a", { href: ITEM_URL + person.id }, person.name),
+          h("span", {}, person.instruments.join(", ")),
+          geonamesLink(person, "GeoNames ↗"),
+        ),
       ),
     ),
     first.page != null && h("p", { class: "card-source" }, `Membership directory, page ${first.page}`),

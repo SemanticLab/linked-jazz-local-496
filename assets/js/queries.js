@@ -6,7 +6,7 @@ export const ITEM_URL = "https://base.semlab.io/wiki/Item:";
 export const PROJECT_ITEM = "Q20719";
 
 // One row per member of the Local 496 project (Q20719):
-// name, instruments, the address the directory lists, coordinates and page.
+// name, instruments, the address the directory lists, coordinates, GeoNames ID and page.
 export const MEMBERS_QUERY = `
 PREFIX wd: <http://base.semlab.io/entity/>
 PREFIX wdt: <http://base.semlab.io/prop/direct/>
@@ -24,6 +24,7 @@ SELECT ?item ?name
        (SAMPLE(?address_) AS ?address)
        (SAMPLE(?city_) AS ?city)
        (SAMPLE(?coord_) AS ?coord)
+       (SAMPLE(?geonames_) AS ?geonames)
        (SAMPLE(?page_) AS ?page)
        (SAMPLE(?thumb_) AS ?thumb)
        (SAMPLE(?wikidata_) AS ?wikidata)
@@ -39,6 +40,7 @@ WHERE {
     OPTIONAL { ?home ps:P69 ?c . ?c rdfs:label ?city_ . FILTER(LANG(?city_) = "en") }
     OPTIONAL { ?home pq:P152 ?address_ }                                  # street address
     OPTIONAL { ?home pq:P146 ?coord_ }                                    # coordinate location
+    OPTIONAL { ?home pq:P282 ?geonames_ }                                 # GeoNames ID of the residence
     OPTIONAL { ?home prov:wasDerivedFrom ?ref . ?ref pr:P87 ?page_ }      # directory page
   }
   OPTIONAL { ?item wdt:P3 ?thumb_ }                                       # thumbnail URL
@@ -65,6 +67,7 @@ export function parseMembers(json) {
     const address = val(row, "address");
     const thumb = val(row, "thumb");
     const page = parseInt(val(row, "page"), 10);
+    const geonames = val(row, "geonames");
     return {
       id: val(row, "item").split("/").pop(),
       name,
@@ -79,6 +82,7 @@ export function parseMembers(json) {
       page: Number.isFinite(page) ? page : null,
       thumb: /^https:\/\//.test(thumb) ? thumb : "",
       wikidata: val(row, "wikidata"),
+      geonames: /^\d+$/.test(geonames) ? geonames : "",
     };
   });
 }
